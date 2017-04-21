@@ -2,7 +2,9 @@
 
 
 import csv
+import os
 import time
+import socket
 import sys
 
 
@@ -14,7 +16,14 @@ def main():
                 x = int(x)
                 y = int(y)
                 time.sleep(0.2)
-                print "{0} + {1} = {2}".format(x, y, x+y)
+                print "(host: {host}, pid: {pid}, time: {time}) {x} + {y} = {z}".format(
+                    host=socket.gethostname(),
+                    pid=os.getpid(),
+                    time=time.strftime('%H:%M:%S'),
+                    x=x,
+                    y=y,
+                    z=x+y,
+                )
 
 
 if __name__ == '__main__':
