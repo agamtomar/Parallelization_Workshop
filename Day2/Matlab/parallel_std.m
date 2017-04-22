@@ -8,6 +8,9 @@
  
 %% Formally matlab_parallel_tutorial and then matlab_parallel_tutorial_new
 
+% This line is used to avoid a bunch of Summit messages
+t.TimeZone='America/Denver';
+
 
 %% Main code
 
@@ -43,7 +46,7 @@ delete(gcp('nocreate'))
            y(i) = std(x(1:i));
     	end
 % Print off how long it takes to run the serial code
-    	fprintf('\n     parFor: %f secs\n\n',toc);
+    	fprintf('\n Parallel Code: %f secs\n\n',toc);
 
 % Delete the current parallel pool
 	delete(pool);
