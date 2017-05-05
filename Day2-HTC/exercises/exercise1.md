@@ -4,6 +4,7 @@ the `time` command to time the total execution.
 
 ## Serial example
 
+    $ module load python
     $ time (
     > python matrix-multiply.py data/input_0.csv
     > python matrix-multiply.py data/input_1.csv
@@ -24,3 +25,5 @@ Alternatively
 * The `time` command can be used as a prefix to time the execution of
   another command.
 * The `wait` command waits until a background job has completed.
+* You may need to load the `python` module to get access to Python
+  "numpy" for use in `matrix-multiply.py`
