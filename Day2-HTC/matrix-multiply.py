@@ -11,7 +11,7 @@ import numpy
 import numpy.random
 
 
-MATRIX_SHAPE = (2048, 2048)
+MATRIX_SHAPE = (1024, 1024)
 
 
 def main():
