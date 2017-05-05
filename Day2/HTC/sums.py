@@ -16,7 +16,7 @@ def main():
                 x = int(x)
                 y = int(y)
                 time.sleep(0.2)
-                print "(host: {host}, pid: {pid}, time: {time}) {x} + {y} = {z}".format(
+                print "{time} (host: {host}, pid: {pid}) {x} + {y} = {z}".format(
                     host=socket.gethostname(),
                     pid=os.getpid(),
                     time=time.strftime('%H:%M:%S'),

@@ -1,8 +1,9 @@
 #!/usr/bin/bash
 
-#SBATCH --job-name sums
+#SBATCH --job-name exercise2-bash-background
 #SBATCH --nodes 1
-#SBATCH --output sums_output.txt
+#SBATCH --ntasks 10
+#SBATCH --output exercise2-output.txt
 #SBATCH --time 2:00
 
 time (
