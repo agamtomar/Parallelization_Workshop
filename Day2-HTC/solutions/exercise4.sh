@@ -4,7 +4,7 @@
 #SBATCH --nodes 1
 #SBATCH --ntasks 10
 #SBATCH --output exercise4-output.txt
-#SBATCH --time 2:00
+#SBATCH --time 0:02:00
 
 module load gnu_parallel
 

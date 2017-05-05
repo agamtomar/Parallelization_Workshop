@@ -4,7 +4,7 @@
 #SBATCH --nodes 2
 #SBATCH --ntasks-per-node 5
 #SBATCH --output exercise5-output.txt
-#SBATCH --time 2:00
+#SBATCH --time 0:02:00
 
 module load intel impi
 module load loadbalance
