@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #SBATCH --job-name exercise6-slurm-arrays
 #SBATCH --ntasks 1

@@ -1,5 +1,6 @@
-#!/usr/bin/bash
+#!/bin/bash
 
-module load gnu_parallel
+module purge
+module load python gnu_parallel
 
-time parallel python sums.py {} ::: data/sums_input_{0..9}.csv
+time (ls data/input_*.csv | parallel python matrix-multiply.py {})

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #SBATCH --job-name exercise4-gnu-parallel
 #SBATCH --nodes 1

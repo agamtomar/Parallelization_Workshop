@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #SBATCH --job-name exercise5-loadbalancer
 #SBATCH --nodes 2
