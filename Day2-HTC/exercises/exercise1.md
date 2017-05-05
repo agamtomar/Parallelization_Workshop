@@ -27,5 +27,5 @@ Alternatively
 * The `time` command can be used as a prefix to time the execution of
   another command.
 * The `wait` command waits until a background job has completed.
-* You may need to load the `python` module to get access to Python
-  "numpy" for use in `matrix-multiply.py`
+* You may need to `module load python` to get access to Python "numpy"
+  for use in `matrix-multiply.py`
