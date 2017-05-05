@@ -7,6 +7,12 @@ import time
 import socket
 import sys
 
+import numpy
+import numpy.random
+
+
+MATRIX_SHAPE = (2048, 2048)
+
 
 def main():
     for input_file in sys.argv[1:]:
@@ -15,14 +21,19 @@ def main():
             for x, y in csv_input:
                 x = int(x)
                 y = int(y)
-                time.sleep(0.2)
-                print "{time} (host: {host}, pid: {pid}) {x} + {y} = {z}".format(
+
+                numpy.random.seed(x)
+                matrix_x = numpy.random.rand(*MATRIX_SHAPE)
+                numpy.random.seed(y)
+                matrix_y = numpy.random.rand(*MATRIX_SHAPE)
+                matrix_product = numpy.matmul(matrix_x, matrix_y)
+
+                print "{time} (host: {host}, pid: {pid}) matmul(matrix({x}), matrix({y}))".format(
                     host=socket.gethostname(),
                     pid=os.getpid(),
                     time=time.strftime('%H:%M:%S'),
                     x=x,
                     y=y,
-                    z=x+y,
                 )
 
 
