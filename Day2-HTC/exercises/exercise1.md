@@ -1,4 +1,4 @@
-# Exercise 1 - Background bash jobs
+# Exercise 1: background bash jobs
 
 In a terminal, background two `matrix-multiply.py` processes. Use the
 `wait` command to wait for all background commands to finish, and use
