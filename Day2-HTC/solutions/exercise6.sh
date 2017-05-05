@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
-#SBATCH --job-name sums
-#SBATCH --nodes 1
+#SBATCH --job-name exercise6-slurm-arrays
+#SBATCH --ntasks 1
 #SBATCH --array 0-9
-#SBATCH --output sums_output-%a.txt
+#SBATCH --output exercise6-output-%a.txt
 #SBATCH --time 1:00
 
 module load gnu_parallel
