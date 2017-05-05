@@ -19,8 +19,8 @@ for i in range(npts):
 ##############################################################
 # Numpy arrays vs. lists
 # Using numpy array syntax can simply and speedup code considerably...
-print ' '
-print 'Timing array vs. list operations for arrays having '+str(npts)+' elements...'
+print(' ')
+print('Timing array vs. list operations for arrays having '+str(npts)+' elements...')
 
 t0 = time.time()
 a = a*2
@@ -37,7 +37,7 @@ tstr = '{:.4e}'.format(dt1)
 tstr2 = '{:.4e}'.format(dt2)
 print('')
 print('Time to compute a=a*2 using numpy array syntax: '+tstr+' seconds')
-print('Time to compute c=a*b using numpy array syntax: '+tstr+' seconds')
+print('Time to compute c=a*b using numpy array syntax: '+tstr2+' seconds')
 
 
 t0 = time.time()
