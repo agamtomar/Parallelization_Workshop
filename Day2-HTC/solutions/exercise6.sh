@@ -1,19 +1,20 @@
 #!/bin/bash
 
-#SBATCH --job-name exercise5-loadbalancer
-#SBATCH --nodes 2
-#SBATCH --ntasks-per-node 5
-#SBATCH --output exercise5-output.txt
+#SBATCH --job-name htc-exercise6-lb
+#SBATCH --ntasks 10
+#SBATCH --output htc-exercise6-%j.out
 #SBATCH --time 00:02:00
 
+module load python
 module load intel impi
 module load loadbalance
 
 (
-    for csv in data/sums_input_{0..9}.csv
+    for input in data/input_{0..9}.csv
     do
-        echo "python sums.py ${csv}"
+        output="htc-exercise6-${SLURM_JOB_ID}-$(basename ${input%.csv}).out"
+        echo "python matrix-multiply.py ${input} >${output}"
     done
-) >lb_cmd_file
+) >lb_cmd_file-${SLURM_JOB_ID}
 
-time mpirun lb lb_cmd_file
+time mpirun lb lb_cmd_file-${SLURM_JOB_ID}
