@@ -1,10 +1,19 @@
 #!/bin/bash
 
-#SBATCH --job-name exercise6-slurm-arrays
-#SBATCH --ntasks 1
-#SBATCH --array 0-9
-#SBATCH --output exercise6-output-%a.txt
-#SBATCH --time 0:01:00
+#SBATCH --job-name exercise5-loadbalancer
+#SBATCH --nodes 2
+#SBATCH --ntasks-per-node 5
+#SBATCH --output exercise5-output.txt
+#SBATCH --time 00:02:00
 
-module load gnu_parallel
-time python sums.py data/sums_input_${SLURM_ARRAY_TASK_ID}.csv
+module load intel impi
+module load loadbalance
+
+(
+    for csv in data/sums_input_{0..9}.csv
+    do
+        echo "python sums.py ${csv}"
+    done
+) >lb_cmd_file
+
+time mpirun lb lb_cmd_file

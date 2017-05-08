@@ -1,13 +1,14 @@
 #!/bin/bash
 
-#SBATCH --job-name exercise4-gnu-parallel
+#SBATCH --job-name htc-exercise4-gnu-parallel
 #SBATCH --nodes 1
 #SBATCH --ntasks 10
-#SBATCH --output exercise4-output.txt
-#SBATCH --time 0:02:00
+#SBATCH --output htc-exercise4-%j.out
+#SBATCH --time 00:02:00
 
-module load gnu_parallel
+module purge
+module load python gnu_parallel
 
 time (
-    ls data/sums_input_*.csv | parallel python sums.py {}
+    ls data/input_*.csv | parallel python matrix-multiply.py {}
 )

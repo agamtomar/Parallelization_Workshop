@@ -1,19 +1,12 @@
 #!/bin/bash
 
-#SBATCH --job-name exercise5-loadbalancer
-#SBATCH --nodes 2
-#SBATCH --ntasks-per-node 5
-#SBATCH --output exercise5-output.txt
-#SBATCH --time 0:02:00
+#SBATCH --job-name htc-exercise5-slurm-arrays
+#SBATCH --ntasks 1
+#SBATCH --array 0-9
+#SBATCH --output htc-exercise5-%j.%a.out
+#SBATCH --time 00:01:00
 
-module load intel impi
-module load loadbalance
+module purge
+module load python
 
-(
-    for csv in data/sums_input_{0..9}.csv
-    do
-        echo "python sums.py ${csv}"
-    done
-) >lb_cmd_file
-
-time mpirun lb lb_cmd_file
+time python matrix-multiply.py data/input_${SLURM_ARRAY_TASK_ID}.csv
