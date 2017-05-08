@@ -5,6 +5,7 @@
 #SBATCH --output htc-exercise6-%j.out
 #SBATCH --time 00:02:00
 
+module purge
 module load python
 module load intel impi
 module load loadbalance
