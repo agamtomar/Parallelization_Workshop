@@ -1,8 +1,12 @@
 Convert the solution from exercise 2 ("background bash jobs in a Slurm
 job"), exercise 4 ("GNU parallel with Slurm"), and exercise 5 ("Slurm
 job arrays") to use the CURC loadbalancer a Bash loop, GNU parallel,
-or Slurm arrays. Each task / input file line should execute a single
+or Slurm arrays, and submit it as a Slurm job. Reduce the requested
+`--ntasks` and observe the execution time increase.
+
+Each task / input file line should execute a single
 `matrix-multiply.py` process.
+
 
 ## Tips
 
