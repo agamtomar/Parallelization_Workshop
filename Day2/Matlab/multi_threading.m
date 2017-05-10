@@ -17,5 +17,5 @@ tic;
 n = 300; % matrix size
 A = rand(n,n); % n x n random matrix
 B = rand(n,n); % n x n random matrix
-C = A * B; % element multiplication
+C = A * B; % matrix multiplication
 fprintf('\n Multi-threading code complete in: %f secs',toc);
