@@ -1,3 +1,7 @@
+###########################################################3
+#       Example:  Map & Reduction in Serial Python
+#
+#
 from functools import reduce
 def squarex(x):
     return (x*x)
