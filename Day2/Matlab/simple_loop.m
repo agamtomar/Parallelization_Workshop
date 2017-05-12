@@ -7,13 +7,13 @@
  
 %% Turn on the profiler
 
-profile clear;
-profile on;
+	profile clear;
+	profile on;
 
 %% Main code
 
 % Delete all existing variables
-clear;
+	clear;
 
 % Create an array that consists of random values the length of n
 % Note - we are purposely not pre-declaring arrays for demonstrating
@@ -23,20 +23,20 @@ clear;
 	x = randn(1,n) ;
 
 % Code that calculates the standard deviation of x and puts it into y
-    for i = 1 : n
-       y(i) = std(x(1:i));
-    end
+    	for i = 1 : n
+		y(i) = std(x(1:i));
+	end
 
 % Code that calculates the variance of x and puts it into z
-    for i = 1 : n
-       z(i) = var(x(1:i));
-    end
+    	for i = 1 : n
+       		z(i) = var(x(1:i));
+    	end
 
 % Code that calculates the max value of y;
-    t=max(y);
+    	t=max(y);
     
 % Code that calculates a magic square
-    m=magic(n);
+    	m=magic(n);
         
 % Turn off profiler and view results
-    profile viewer;
+    	profile viewer;

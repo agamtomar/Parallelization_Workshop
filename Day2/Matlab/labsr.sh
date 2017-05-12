@@ -4,9 +4,9 @@
 #SBATCH --qos=debug			# Specify debug QOS
 #SBATCH --partition=shas		# Specify Summit haswell nodes
 #SBATCH --ntasks=24			# Number of cores per node
-#SBATCH --job-name=HelloW		# Job submission name
-#SBATCH --output=HELLOW_%j.out		# Output file name
-###SBATCH --reservation=parallelD2	# Reservation name
+#SBATCH --job-name=labsr		# Job submission name
+#SBATCH --output=labsr_%j.out		# Output file name
+###SBATCH --reservation=parallelD2        # Reservation name
 
 
 # Written by:	Shelley Knuth
@@ -21,5 +21,5 @@ module purge
 module load matlab
 
 # Run matlab without a GUI
-matlab -nosplash -nodesktop -r "clear; num_workers=$SLURM_NTASKS; parallel_hello_world;"
+matlab -nosplash -nodesktop -r "clear; labsr;"
 

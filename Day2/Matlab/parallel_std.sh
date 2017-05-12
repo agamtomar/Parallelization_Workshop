@@ -3,9 +3,10 @@
 #SBATCH --time=0:05:00               		# Max wall time
 #SBATCH --qos=debug                  		# Specify debug QOS
 #SBATCH --partition=shas             		# Specify Summit haswell nodes
-#SBATCH --ntasks=24          	 	        # Number of tasks per job
+#SBATCH --ntasks=24        	 	        # Number of tasks per job
 #SBATCH --job-name=Matlab_Gen_Parallel          # Job submission name
 #SBATCH --output=MATLAB_GEN_PARALLEL.%j.out     # Output file name with Job ID
+#SBATCH --reservation=parallelD2		# Reservation name
 
 
 # Written by:	Shelley Knuth
@@ -18,9 +19,6 @@ module purge
 
 # load the matlab module
 module load matlab
-
-# The directory where you want the job to run
-cd /projects/$USER/tutorials/parallelization_workshop/new
 
 # Run matlab without a GUI and ask for all available workers
 matlab -nosplash -nodesktop -r "clear; num_workers=$SLURM_NTASKS; parallel_std;"
