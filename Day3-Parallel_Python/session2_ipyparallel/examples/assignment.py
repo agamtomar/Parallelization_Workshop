@@ -1,3 +1,11 @@
+#########################################################################3
+#       Example:  Assignment in IPyParallel
+#           
+#                 We can assign values to variables globally (across all 
+#                 engines at once) or locally (across some subset
+#                 of engines).
+
+
 import ipyparallel
 import os
 import socket
