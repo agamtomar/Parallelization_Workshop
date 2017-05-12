@@ -1,7 +1,12 @@
+###########################################################################
+#   Example:  In-place vs. out-of-place operations
+#           
+#             We can avoid unnecessary array copying, and save time,
+#             by using in-place operators where possible.
+#             Use a += 2 instead of a = a+2, a *=2 instead of a = a*2, etc.
+
 import numpy as np
 import time
-
-
 
 
 npts = 10000000
@@ -10,9 +15,6 @@ a = np.zeros(npts)
 b = np.zeros(npts)
 
 
-
-###############################################################
-#  In-place vs. out-of-place operations
 print(' ')
 print(' Timing in-place vs. out-of-place array operations')
 print(' Number of elements: ', npts)

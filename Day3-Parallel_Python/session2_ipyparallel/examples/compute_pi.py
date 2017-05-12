@@ -1,3 +1,9 @@
+#############################################################################
+#       Example:  Parallel computation of pi using IPyParallel
+#
+#                 In this example, each engine computes a unique estimate of pi.
+#                 The result is averaged across all engines in the cluster.
+#
 import ipyparallel
 import random
 import time

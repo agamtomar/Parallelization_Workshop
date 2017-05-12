@@ -1,7 +1,17 @@
+########################################################################
+#   Example:   Array syntax vs. explicit looping
+#
+#              Since Python is an interpretted language, explicit
+#              loops are inherently slow.  It is often advantageous
+#              to rewrite loops using array syntax.  This allows 
+#              Python to use more efficient routines, compiled 
+#              & optimized in a lower-level language (like C) where possible.
+#              
+#              In this example, we record the time to calculate a=a*2 and
+#              c = a*b using both array syntax and explicit looping.
+
 import numpy as np
 import time
-
-
 
 npts = 1000000
 ntrials = 2
@@ -9,8 +19,6 @@ a = np.zeros(npts)
 b = np.zeros(npts)
 
 
-#######################################
-# Array operations vs. explicit looping
 print(' ')
 print('   Timing array operations vs. explicit looping')
 print('   Number of elements: ', npts)

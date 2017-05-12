@@ -1,3 +1,9 @@
+#################################################################
+#   Example:  Numpy array initialization
+#
+#             There are various ways to initialize a Numpy array.
+#             Several examples are shown below.
+
 import numpy as np
 
 #Array dimensions for use later

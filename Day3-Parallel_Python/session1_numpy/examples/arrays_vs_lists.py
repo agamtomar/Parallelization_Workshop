@@ -1,14 +1,22 @@
+###############################################################################
+#   Example:   Using Numpy arrays instead lists
+#
+#              Using numpy array syntax can speed up a calculation considerably.
+#              We illustrate this by recording the time needed to perform
+#              a = a*2 and c = a*b for lists and Numpy arrays with large
+#              element counts.
+
 import numpy as np
 import time
 
+npts = 10000000    # number of elements in each list/array
+ntrials = 2        # number of times to repeat the calculation
 
-
-
-npts = 10000000
-ntrials = 2
+#Initialize our Numpy arrays
 a = np.zeros(npts)
 b = np.zeros(npts)
 
+#Initialize our lists
 d = []
 e = []
 f = []
@@ -16,11 +24,9 @@ for i in range(npts):
     d.append(0.1)
     e.append(2.0)
     f.append(0.0)
-##############################################################
-# Numpy arrays vs. lists
-# Using numpy array syntax can simply and speedup code considerably...
-print ' '
-print 'Timing array vs. list operations for arrays having '+str(npts)+' elements...'
+
+print(' ')
+print('Timing array vs. list operations for arrays having '+str(npts)+' elements...')
 
 t0 = time.time()
 a = a*2
@@ -37,7 +43,7 @@ tstr = '{:.4e}'.format(dt1)
 tstr2 = '{:.4e}'.format(dt2)
 print('')
 print('Time to compute a=a*2 using numpy array syntax: '+tstr+' seconds')
-print('Time to compute c=a*b using numpy array syntax: '+tstr+' seconds')
+print('Time to compute c=a*b using numpy array syntax: '+tstr2+' seconds')
 
 
 t0 = time.time()

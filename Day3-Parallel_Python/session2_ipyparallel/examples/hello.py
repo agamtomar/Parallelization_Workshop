@@ -1,3 +1,11 @@
+#########################################################################3
+#           Example:  Initializing IPyParallel
+#
+#                     This example demonstrates how to access the individual
+#                     ipython engines running within the cluster.
+#
+
+
 import ipyparallel
 import os
 import socket

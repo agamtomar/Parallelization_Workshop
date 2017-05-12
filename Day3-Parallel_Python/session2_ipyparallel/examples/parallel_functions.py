@@ -1,3 +1,11 @@
+##########################################################3
+#       Example:   Parallel mapping
+#
+#       IPyParallel has a parallel mapping feature which we
+#       demonstrate in this example.  When using this functionality,
+#       our list of arguments is distributed across all the 
+#       IPython engines.
+
 import ipyparallel
 import os
 
@@ -18,7 +26,8 @@ print('\n ',nclients," Python clients are active.\n")
 
 n=nclients*4
 
-#We map 
+#Engine 0 gets arguments [0,1,2,3]
+#Engine 1 gets arguments [4,5,6,7] etc.
 results = all_proc.map_sync(squared,range(n))
 pids = all_proc.apply_sync(os.getpid)
 pdict = {}

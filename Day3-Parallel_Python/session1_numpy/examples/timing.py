@@ -1,7 +1,13 @@
 
+######################################################################3
+#       Example:  Timing
+#
+#                 Timing in Python is easily accomplished using the "time"
+#                 function provided by the "time" module. A simple
+#                 example is provided below.
+
 import time
 nsizes = 8
-
 
 for i in range(nsizes):
     list1 = []
