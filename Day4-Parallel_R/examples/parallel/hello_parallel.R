@@ -6,7 +6,7 @@ hello <- function () {
 }
 
 ## number of slave to spawn
-np = 20
+np = detectCores()
 
 cl <- makeCluster(np)
 
