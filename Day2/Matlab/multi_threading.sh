@@ -6,7 +6,7 @@
 #SBATCH --ntasks=1                   	# Number of cores per node
 #SBATCH --job-name=multithread		# Job submission name
 #SBATCH --output=multithread_%j.out	# Output file name
-###SBATCH --reservation=parallelD2        # Reservation name
+#SBATCH --reservation=parallelD2        # Reservation name
 
 
 # Written by:	Shelley Knuth

@@ -6,7 +6,7 @@
 #SBATCH --ntasks=24			# Number of cores per node
 #SBATCH --job-name=HelloW		# Job submission name
 #SBATCH --output=HELLOW_%j.out		# Output file name
-###SBATCH --reservation=parallelD2	# Reservation name
+#SBATCH --reservation=parallelD2	# Reservation name
 
 
 # Written by:	Shelley Knuth
