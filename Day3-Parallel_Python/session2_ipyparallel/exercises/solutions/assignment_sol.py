@@ -1,3 +1,7 @@
+#########################################################################3
+#       Solution:  Assignment Exercise
+#           
+
 import ipyparallel
 import os
 import socket
