@@ -1,6 +1,10 @@
 #########################################################################3
-#       Solution:  Assignment Exercise
+#       Exercise:  Assignment 
 #           
+#                 Modify this program so that var1 receives the value n,
+#                 where n is the remainder of the process ID divided by 3.
+#                 i.e., n = pid % 3
+
 
 import ipyparallel
 import os
@@ -17,17 +21,6 @@ proc2 = clients[2]
 even_proc = clients[range(0,nclients,2)]
 odd_proc  = clients[range(1,nclients,2)]
 
-# We create a subset of views of the client list based on client ID mod 3
-pset1 = clients[range(0,nclients,3)]
-pset2 = clients[range(1,nclients,3)]
-pset3 = clients[range(2,nclients,3)]
-
-#Assign a value of 1 to var1 on all python engines; do so based on Client ID mod 3
-pset1['var1'] =0
-pset2['var1'] =1
-pset3['var1'] =2
-
-
 #Only the hub prints this
 print('\n ',nclients," Python clients are active.\n")
 
@@ -37,15 +30,15 @@ pids = all_proc.apply_sync(os.getpid)
 
 #Assign a list-value of [0,1] to the variable 'b' on all python engines
 all_proc['b']=[0,1]
-
 #We can view the value on all engines
 vals = all_proc['b']
 print('All values of b: ',vals) # or use all_proc['b']
-
 #or on a single engine:
 print('')
 print("Engine zero's value of b: ", proc0['b']) #could also use vals[0]
 
+#Assign a value of 1 to var1 on all python engines
+all_proc['var1']=1
 
 #Assign a value of 2 to var2 on all python engines
 all_proc['var2']=2
