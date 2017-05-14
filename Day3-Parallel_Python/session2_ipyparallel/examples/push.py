@@ -1,7 +1,16 @@
-#Example program illustrating how to use classes with ipyparallel
+##############################################################
+#           Example:  Using Classes
+# 
+#           We can uses classes in IPyParallel.  To do so,
+#            i)  define the class (occurs only on the hub)
+#           ii)  push the class definition to the clients
+
 
 import ipyparallel
 
+#####################################################
+# When we define the class, the definition initially 
+# exists only on the hub.
 class myclass():
     def __init__(self):
         self.x = 0
@@ -21,6 +30,8 @@ class myclass():
         y = self.y
         return [x,y]
 
+# Create a simple function that uses "myclass"
+# and its associated methods.
 def use_class(i):
     a = myclass()
     a.set_x(i)
@@ -30,6 +41,7 @@ def use_class(i):
     v2 = a.ret_vals()
     return [v1,v2] 
 
+#Initialize the communication
 clients = ipyparallel.Client()
 nclients = len(clients)
 all_proc = clients[:]
@@ -40,6 +52,9 @@ print('\n ',nclients," Python clients are active.\n")
 #Before the class can be used, its definition must be pushed to the different Python engines
 
 all_proc.push({"myclass": myclass})
+
+# Next, use map_sync to call use_class on each processor,
+# with the process ID passed as the argument.
 results = all_proc.map_sync(use_class,range(nclients))
 
 for i in range(nclients):
