@@ -23,7 +23,7 @@
 	x = randn(1,n) ;
 
 % Code that calculates the standard deviation of x and puts it into y
-    	for i = 1 : n
+    for i = 1 : n
 		y(i) = std(x(1:i));
 	end
 
