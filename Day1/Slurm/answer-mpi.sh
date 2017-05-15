@@ -13,4 +13,4 @@ module purge
 module load intel/16.0.3
 module load impi
 
-./mpi-hello.x -np 24
+mpirun -np 24 ./mpi-hello.x 
