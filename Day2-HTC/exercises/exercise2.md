@@ -1,12 +1,14 @@
 # Exercise 2: background bash jobs in a Slurm job
 
-Submit `bash-multiple-background-tasks.sh` as a Slurm job. Reduce the
-requested `--ntasks` and observe the execution time increase.
+Update and submit `bash-multiple-background-tasks.sh` as a Slurm
+job. Reduce the requested `--ntasks` and observe the execution time
+increase.
 
 
 ## Non-Slurm example
 
     $ bash examples/bash-multiple-background-tasks.sh
+
 
 ## Tips
 

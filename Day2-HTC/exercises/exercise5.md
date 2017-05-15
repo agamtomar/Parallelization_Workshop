@@ -4,6 +4,7 @@ arrays rather than a Bash loop or GNU parallel. Each array task should
 execute a single `matrix-multiply.py` process, and write to a separate
 output file.
 
+
 ## Tips
 
 * You may want to use `%A` in stead of `%j` in `--output` to show the

@@ -4,6 +4,7 @@ In a terminal, background two `matrix-multiply.py` processes. Use the
 `wait` command to wait for all background commands to finish, and use
 the `time` command to time the total execution.
 
+
 ## Serial example
 
     $ module load python
@@ -12,6 +13,7 @@ the `time` command to time the total execution.
     > python matrix-multiply.py data/input_1.csv
     > )
 
+
 ## Login node access
 
     $ ssh username@rc.colorado.edu
@@ -19,6 +21,7 @@ the `time` command to time the total execution.
 Alternatively
 
     $ ssh user00xx@tutorial-login.rc.colorado.edu
+
 
 ## Tips
 

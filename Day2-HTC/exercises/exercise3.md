@@ -3,12 +3,14 @@
 Convert a serial bash loop to a a parallel-execution GNU parallel
 command.
 
+
 ## Serial bash loop
 
     for input in data/input_{0..9}.csv
     do
         python matrix-multiply.py ${input}
     done
+
 
 ## Tips
 
