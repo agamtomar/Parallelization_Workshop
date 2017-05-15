@@ -19,4 +19,4 @@ requested `--ntasks` and observe the execution time increase.
 * Be careful to request a single node with `--nodes`
 * Specify a 2-minute time limit using the `--time` parameter
 * Specify an `--output` file file called `exercise2-%j.out`
-* Use the `--reservation` `tutorial1`
+* Use the `--reservation` `parallelD2`
