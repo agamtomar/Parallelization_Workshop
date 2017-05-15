@@ -1,4 +1,13 @@
-#!/usr/bin/env python
+##################################################################
+#
+#       Example:  Synchronization
+#       
+#       Different processes can execute their instructions at different speeds.
+#       This is usually due to computational load imbalance (e.g., one process
+#       has less work to do, and so it executes its code faster).
+#       We can use the Barrier method, as shown below, to force all processes
+#       to synchronize at a specified point in the code.  Processes arriving
+#       early wait on all other processes to arrive before moving on.
 def main():
 
     from mpi4py import MPI
@@ -25,7 +34,7 @@ def main():
             sys.stdout.write(
                 "  Hello from node %s, rank %d out of %d processes.\n"
                 % (node_name, my_rank, num_proc))
-
+            sys.stdout.flush()
     MPI.Finalize()
 main()
 
