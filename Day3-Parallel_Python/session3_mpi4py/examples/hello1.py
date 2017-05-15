@@ -1,4 +1,10 @@
-#!/usr/bin/env python
+##################################################################
+#
+#       Example:  Hello World (1)
+#       
+#       This example demonstrates how to initialize communication
+#       and retrieve basic information about the number of active
+#       processes, process rank, etc.
 def main():
     """
     Parallel Hello World

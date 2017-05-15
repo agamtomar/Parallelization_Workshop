@@ -1,9 +1,21 @@
-####################################################################3
+#######################################################3
 #
-#       Exercise:   Trapezoidal Integration
+#       Exercise:  Trapezoidal Integration
 #
-#       Complete the load-balancing so that this program works correctly.
-#       (i.e., what should my_xone and delta_x be)?
+#       Consider the following program, designed to integrate x^3
+#       in parallel over the region [0,1].   Everything needed to
+#       make this program work is provided, with one exception.
+#       As we are distributing the work involved in computing the 
+#       integral, we need to give each process a unique subrange
+#       of [0,1] to integrate over.   Modify the definitions of deltax
+#       and myxone below so that the integration limits are appropriately
+#       defined for each process.
+#
+#
+#       This sort of exercise is referred to as "load balancing."
+#
+#       Once you are finished, examine how the calculation time varies
+#       as the number of MPI ranks is changed.
 def myfunc(x):
     val = x*x*x
     return val
@@ -31,6 +43,7 @@ def main():
     from mpi4py import MPI
     import sys
     import numpy
+    import time
 
     num_proc  = MPI.COMM_WORLD.Get_size()
     my_rank   = MPI.COMM_WORLD.Get_rank()
@@ -42,8 +55,8 @@ def main():
     comm.Barrier()
 
 
-    ntests = 10000
-    ntrap = 1000000/num_proc  # Each rank gets 1000,000/num_proc trapezoids
+    ntests = 100
+    ntrap = 1000000//num_proc  # Each rank gets 1000,000/num_proc trapezoids
 
     ntests = 2  #comment this line out once your code is working correctly
 
@@ -51,23 +64,38 @@ def main():
     xone = 1.0  # The global limits of integration
     xtwo = 2.0
 
+
     # Each rank should integrate between a unique pair of values myxone and myxtwo
     # What should deltax and myxone be to make this work?
+    # The logic below only works for one process...
     deltax = (xtwo-xone)
     myxone = xone
     myxtwo = myxone+deltax
 
-    local_integral = numpy.array(0.0,'d') 
-    global_integral = numpy.array(0.0, 'd')
+    local_integral  = numpy.ndarray(1, dtype='float64') 
+    global_integral = numpy.ndarray(1, dtype='float64')
+    t0 = time.time()
     for i in range(ntests):
 
-        local_integral = 0*local_integral+trapezoid_int(myxone,myxtwo,ntrap)
+        local_integral[0] = trapezoid_int(myxone,myxtwo,ntrap)
         # The call to Allreduce will sum the value of local_integral across
         # all processes, and store it in global_integral        	
         comm.Allreduce([local_integral, MPI.DOUBLE], [global_integral,MPI.DOUBLE], op=MPI.SUM)
 
+    t1 = time.time()
     sys.stdout.write("  Rank %d contributes %f to the global integral value of %f.\n" 
                      % (my_rank, local_integral, global_integral))
+    sys.stdout.flush()
+
+    dt = t1-t0
+    dt_local =  numpy.ndarray(1,dtype='float64')
+    dt_local[0] = dt
+    dt_global = numpy.ndarray(1,dtype='float64')
+
+    comm.Allreduce([dt_local, MPI.DOUBLE], [dt_global,MPI.DOUBLE], op=MPI.SUM)
+    dt_avg = (dt_global/num_proc)/ntests
+    if (my_rank == 0):
+        sys.stdout.write('  Average integration time for %d MPI ranks is %f seconds.\n' % (num_proc, dt_avg[0]))
     MPI.Finalize()
 main()
 
