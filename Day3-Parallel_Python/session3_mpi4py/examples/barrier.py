@@ -20,8 +20,8 @@ def main():
 
     if (my_rank == 0):
         sys.stdout.write("  %d MPI Processes are now active.\n" %(num_proc))
-
-    # As with OpenMP, MPI has a barrier function useful
+        sys.stdout.flush()
+    # MPI has a barrier function useful
     # for synchronizing thread activity.  Execution of the parallel 
     # region pauses at the barrier and resumes once all threads have
     # reached the barrier.

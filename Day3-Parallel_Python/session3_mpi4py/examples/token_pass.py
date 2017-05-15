@@ -5,7 +5,8 @@
 #       In this example, each rank 
 #       i) receives a message from the rank below it
 #      ii) sends a message to the rank above it.
-#       Executation completes when process 0 receives from the highest rank.
+#     iii) Rank 0 sends to rank N-1, and rank N-1 receives from rank 0
+#       Execution completes when process 0 receives from the highest rank.
 #       Note the modified logic for rank 0 and the maximum rank
 def main():
     """
