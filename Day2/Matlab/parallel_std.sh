@@ -6,7 +6,7 @@
 #SBATCH --ntasks=24        	 	        # Number of tasks per job
 #SBATCH --job-name=Matlab_Gen_Parallel          # Job submission name
 #SBATCH --output=MATLAB_GEN_PARALLEL.%j.out     # Output file name with Job ID
-#SBATCH --reservation=parallelD2		# Reservation name
+#SBATCH --reservation=parallelD1		# Reservation name
 
 
 # Written by:	Shelley Knuth
