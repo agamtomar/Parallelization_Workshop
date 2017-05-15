@@ -1,4 +1,12 @@
-#!/usr/bin/env python
+##################################################################
+#
+#       Example:  Hello World (1)
+#       
+#       We don't always want EVERY processor to print to the screen.
+#       Instead, we may have all processors print SOME information,
+#       and have the rest printed by a specific process (e.g., 
+#       rank 0 as shown below)
+
 def main():
     """
     Python, mpi4py parallel hello world.
