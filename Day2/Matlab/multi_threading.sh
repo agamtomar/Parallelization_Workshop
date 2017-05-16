@@ -20,5 +20,5 @@ module purge
 module load matlab
 
 # Run matlab without a GUI and ask for workers
-matlab -nosplash -nodesktop -r "clear; num_workers=$SLURM_NTASKS; multi_threading;"
+matlab -nosplash -nodesktop -r "clear; multi_threading;"
 
