@@ -1,6 +1,9 @@
 #############################################################################
 #       Example:  Parallel computation of pi using IPyParallel
 #
+#                 This program demonstrates how to evaluate a function in parallel
+#                 using map_sync.
+#
 #                 In this example, each engine computes a unique estimate of pi.
 #                 The result is averaged across all engines in the cluster.
 #
@@ -23,9 +26,9 @@ def estimate_pi(n):
             count += 1
     return 4.0*count/float(n)
 
-clients=ipyparallel.Client()
-nclients = len(clients)
-all_proc = clients[:]
+rc=ipyparallel.Client(profile='crestone-cpu')
+nengines = len(rc)
+all_proc = rc[:]
 all_proc.block=True
 
 #(b) Alternatively, we can sync our module imports from the hub
@@ -47,7 +50,7 @@ for i in range(8):
     t1 = time.time()
     tval = t1-t0
 
-    msg = 'Estimation based on '+str(i)+' points: '
+    msg = 'Estimation based on '+str(10**i)+' points: '
     tmsg = 'Calculation time (seconds) : '
     print(msg,est_pi,tmsg,tval)
 
@@ -62,18 +65,18 @@ for i in range(2,8):
 
     t0 = time.time()
 
-    #[nx//clients]*nclients creates a list of length nclients, where each element
-    # has value nx//nclients.  Each process gets one element of this list 
+    #[nx//nengines]*nengines creates a list of length nengines, where each element
+    # has value nx//nengines.  Each process gets one element of this list 
     # and passes it to estimate_pi
 
-    pi_estimates = all_proc.map_sync(estimate_pi, [nx//nclients]*nclients)
+    pi_estimates = all_proc.map_sync(estimate_pi, [nx//nengines]*nengines)
 
     est_pi = np.mean(pi_estimates)
 
     t1 = time.time()
     tval = t1-t0
 
-    msg = 'Estimation based on '+str(i)+' points: '
+    msg = 'Estimation based on '+str(10**i)+' points: '
     tmsg = 'Calculation time (seconds) : '
     print(msg,est_pi,tmsg,tval)
 
