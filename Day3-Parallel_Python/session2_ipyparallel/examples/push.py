@@ -3,7 +3,7 @@
 # 
 #           We can uses classes in IPyParallel.  To do so,
 #            i)  define the class (occurs only on the hub)
-#           ii)  push the class definition to the clients
+#           ii)  push the class definition to the engines
 
 
 import ipyparallel
@@ -42,12 +42,12 @@ def use_class(i):
     return [v1,v2] 
 
 #Initialize the communication
-clients = ipyparallel.Client()
-nclients = len(clients)
-all_proc = clients[:]
+rc = ipyparallel.Client(profile='crestone-cpu')
+nengines = len(rc)
+all_proc = rc[:]
 all_proc.block =True
 
-print('\n ',nclients," Python clients are active.\n")
+print('\n ',nengines," Python engines are active.\n")
 
 #Before the class can be used, its definition must be pushed to the different Python engines
 
@@ -55,9 +55,9 @@ all_proc.push({"myclass": myclass})
 
 # Next, use map_sync to call use_class on each processor,
 # with the process ID passed as the argument.
-results = all_proc.map_sync(use_class,range(nclients))
+results = all_proc.map_sync(use_class,range(nengines))
 
-for i in range(nclients):
+for i in range(nengines):
     istr = '{:02d}'.format(i)
     res0 = results[i][0]
     res1 = results[i][1]
