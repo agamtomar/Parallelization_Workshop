@@ -1,9 +1,15 @@
-###########################################################3
+##########################################################################
 #       Example:  Map & Reduction in Serial Python
 #               
 #                 If we have a function designed to accept one argument,
-#                 but want to peform its operation on multiple data, we
-#                 can use Python's map function as shorthand for a loop.
+#                 but want to evaluate it for multiple data values, we
+#                 can use Python's "map" function as shorthand for a loop.
+#
+#                 If we have a function that we would like to call again
+#                 and again, using results from one call in tandem with
+#                 the subsequent call, we can use "reduce" function.
+#
+#                 The following program demonstrates the use of map & reduce.
 from functools import reduce
 def squarex(x):
     return (x*x)

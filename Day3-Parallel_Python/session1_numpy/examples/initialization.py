@@ -10,6 +10,11 @@ import numpy as np
 nx = 10
 ny = 20
 
+#1-D array, 8-byte real, using np.empty means that
+# values are not initialized to anything (in particular...)
+earr = np.empty(nx,dtype='float64')
+print('earr: ', earr)
+print(' ')
 
 #1-D array, 4-byte real, using np.zeros
 # means that values are initialized to zero
@@ -17,22 +22,19 @@ zarr = np.zeros(nx,dtype='float32')
 print('zarr: ', zarr)
 print(' ')
 
-#1-D array, 8-byte real, using np.empty means that
-# values are not initialized to anything
-earr = np.empty(nx,dtype='float64')
-print('earr: ', earr)
-print(' ')
 
 #2-d array, 4-byte integer, values set to zero
-# Column major ordering (second index is fastest; like C/C++)
+# Row-major ordering (second index is fastest; like C/C++)
 iarr2da = np.zeros((nx,ny),dtype='int32')
-print('iarr2da: ', iarr2da)
+print('iarr2da: ')
+print(iarr2da)
 print(' ')
 
 #2-d array, 4-byte integer, values set to zero
-#Row-major ordering (first index is fastest; like Fortran)
+#Column-major ordering (first index is fastest; like Fortran)
 iarr2db = np.zeros((nx,ny),dtype='int32', order ='F')
-print('iarr2db: ', iarr2db)
+print('iarr2db: ') 
+print(iarr2db)
 print(' ')
 
 
@@ -52,11 +54,26 @@ istart = 100
 iend = 200
 nstep = 200
 arrsp2 = np.linspace(istart,iend,nstep,dtype='float64')
-print('arrsp2: ', arrsp2)
+print('arrsp2: ')
+print(arrsp2)
 print(' ')
 
-array_names = ['zarr', 'earr', 'iarr2da', 'iarr2db','arrsp', 'arrsp2']
-arrays = [zarr,earr,iarr2da,iarr2db, arrsp, arrsp2]
+
+# 1-d array, 8-byte real, initialized using values from an existing list
+oned = [0,1.2, 5.6, 8.9]
+arrinit = np.array(oned,dtype='float64')
+print('arrinit: ', arrinit)
+print(' ')
+
+# 2-d array, 4-byte integer, initialized using values from existing 2-D list
+twod = [ [ 1, 2], [3,4] ]
+arrinit2d = np.array(twod,dtype='float64')
+print('arrinit2d: ')
+print(arrinit2d)
+print(' ')
+
+array_names = ['zarr', 'earr', 'iarr2da', 'iarr2db','arrsp', 'arrsp2', 'arrinit', 'arrinit2d']
+arrays = [zarr,earr,iarr2da,iarr2db, arrsp, arrsp2, arrinit, arrinit2d]
 
 for i,o in enumerate(arrays):
     ndim = o.ndim
