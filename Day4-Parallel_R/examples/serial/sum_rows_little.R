@@ -1,6 +1,6 @@
 library(microbenchmark)
 
-nrows <- 1000
+nrows <- 10
 M <- matrix(1:nrows^2, nrow = nrows, ncol = nrows)
 
 
@@ -16,3 +16,6 @@ sumrows2 <- function(M) {
 }
 
 microbenchmark(sumrows1(M, nrows), sumrows2(M))
+
+print(sumrows1(M, nrows))
+print(sumrows2(M))

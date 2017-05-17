@@ -7,7 +7,9 @@ library(pbdMPI, quiet = TRUE)
 init()
 
 # Print Hello World
-cat("Hello World from process",comm.rank(),"of",comm.size(),"!\n")
+comm.cat("Hello World from process",comm.rank(),"of",comm.size(),"!\n", all.rank=TRUE)
+k <- 10
+comm.print(k*comm.rank(), all.rank=TRUE)
 
 # Wrap up
 finalize()

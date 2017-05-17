@@ -1,25 +1,27 @@
 # Simply summation of Matrix rows
-library(parallel)
+suppressMessages(library(pbdMPI , quietly = TRUE))
 library(microbenchmark)
 
-ncores = detectCores()
-print(ncores)
+init ()
 
-cl <- makeCluster(ncores)
+.comm.size <- comm.size()
+.comm.rank <- comm.rank()
+comm.print(.comm.size, all.rank=TRUE)
+comm.print(.comm.rank, all.rank=TRUE)
 
-nrows <- 1000
-M <- matrix(1:nrows^2, nrow = nrows, ncol = nrows)
-
-microbenchmark(parApply(M, 1, sum, cl=cl), mclapply(M, sum, mc.cores=ncores), times=10)
-
-stopCluster(cl)
-
-## better
-
-parsumrows <- function(M, ncores) {
-  cl <- makeCluster(ncores)
-  parApply(M, 1, sum, cl=cl)
-  stopCluster(cl)
+nrows <- 10
+if (.comm.rank == 0) {
+    M <- matrix(1:nrows^2, nrow = nrows, ncol = nrows)
 }
 
-microbenchmark(parsumrows(M, ncores), mclapply(M, sum, mc.cores=ncores), times=10)
+r <- pbdApply(M, 1, sum, pbd.mode="mw", rank.source=0)
+
+comm.print(r)
+
+if (.comm.rank == 0) {
+    print("#")
+    print(rowSums(M))
+}
+
+finalize()
+

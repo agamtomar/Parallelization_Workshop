@@ -2,24 +2,19 @@
 library(parallel)
 library(microbenchmark)
 
-ncores = detectCores()
+#ncores = detectCores()
+ncores = 4
 print(ncores)
 
 cl <- makeCluster(ncores)
 
-nrows <- 1000
+nrows <- 10
 M <- matrix(1:nrows^2, nrow = nrows, ncol = nrows)
 
-microbenchmark(parApply(M, 1, sum, cl=cl), mclapply(M, sum, mc.cores=ncores), times=10)
+microbenchmark(parApply(M, 1, sum, cl=cl), times=10)
+
+print(parApply(M, 1, sum, cl=cl))
+
 
 stopCluster(cl)
 
-## better
-
-parsumrows <- function(M, ncores) {
-  cl <- makeCluster(ncores)
-  parApply(M, 1, sum, cl=cl)
-  stopCluster(cl)
-}
-
-microbenchmark(parsumrows(M, ncores), mclapply(M, sum, mc.cores=ncores), times=10)
