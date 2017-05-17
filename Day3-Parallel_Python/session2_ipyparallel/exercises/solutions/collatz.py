@@ -13,7 +13,7 @@ def collatz_length(n):
     return length
 
 
-n = 10000
+n = 100000
 max_len = 1
 max_i = 1
 
@@ -36,9 +36,9 @@ msg2 = str(max_i)+', whose sequence has length '+str(max_len)+'.'
 print(msg+msg2)
 print('Calculation time (serial; seconds): ', dt)
 
-clients=ipyparallel.Client()
-nclients = len(clients)
-all_proc = clients[:]
+rc=ipyparallel.Client(profile='crestone-cpu')
+nengines = len(rc)
+all_proc = rc[:]
 all_proc.block=True
 
 print('\n')
@@ -57,7 +57,8 @@ for i in range(1,n):
 t0 = time.time()
 lengths = all_proc.map_sync(collatz_length, numbers)
 max_len=np.max(lengths)
-max_i = lengths.index(max_len)+1 # search the
+# search the list for the index corresponding to max_len; the number corresponding to that length is index+1
+max_i = lengths.index(max_len)+1  
 t1 = time.time()
 dt=t1-t0
 

@@ -3,7 +3,7 @@
 #   Exercise:  Modify this code so that the calculation of 
 #              Collatz-sequence lengths is distributed across
 #              multiple processors. 
-#              Perform the calculation in serial and in paralle and 
+#              Perform the calculation in serial and in parallel and 
 #              measure the time required in each instance
 #
 def collatz_length(n):
@@ -19,7 +19,7 @@ def collatz_length(n):
     return length
 
 
-n = 10000
+n = 100000
 
 max_len = 1
 max_i = 1

@@ -11,20 +11,23 @@ def squared(x):
     return (x**2,os.getpid())
 
 #identify the our python engines
-clients=ipyparallel.Client()
-nclients = len(clients)
+rc=ipyparallel.Client(profile='crestone-cpu')
+nengines = len(rc)
 
 #create views into each engine
-all_proc  = clients[:]
+all_proc  = rc[:]
 all_proc.block=True
 
-#Only the hub prints this
-print('\n ',nclients," Python clients are active.\n")
+#Only the controller prints this
+print('\n ',nengines," Python engines are active.\n")
 
-n=nclients*4
+n=nengines*4
 
 #We map 
 results = all_proc.map_sync(squared,range(n))
+
+# We can use the process ID's to create a dictionary mapping
+# process ID to engine #
 pids = all_proc.apply_sync(os.getpid)
 pdict = {}
 

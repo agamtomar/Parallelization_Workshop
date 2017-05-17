@@ -7,20 +7,20 @@ import os
 import socket
 
 #identify the our python engines
-clients=ipyparallel.Client()
-nclients = len(clients)
+rc=ipyparallel.Client(profile='crestone-cpu')
+nengines = len(rc)
 
 #create views into each engine
-all_proc  = clients[:]
-proc0 = clients[0]
-proc2 = clients[2]
-even_proc = clients[range(0,nclients,2)]
-odd_proc  = clients[range(1,nclients,2)]
+all_proc  = rc[:]
+proc0 = rc[0]
+proc2 = rc[2]
+even_proc = rc[range(0,nengines,2)]
+odd_proc  = rc[range(1,nengines,2)]
 
 # We create a subset of views of the client list based on client ID mod 3
-pset1 = clients[range(0,nclients,3)]
-pset2 = clients[range(1,nclients,3)]
-pset3 = clients[range(2,nclients,3)]
+pset1 = rc[range(0,nengines,3)]
+pset2 = rc[range(1,nengines,3)]
+pset3 = rc[range(2,nengines,3)]
 
 #Assign a value of 1 to var1 on all python engines; do so based on Client ID mod 3
 pset1['var1'] =0
@@ -29,7 +29,7 @@ pset3['var1'] =2
 
 
 #Only the hub prints this
-print('\n ',nclients," Python clients are active.\n")
+print('\n ',nengines," Python engines are active.\n")
 
 # Each Python engine calls the gethostname and getpid functions
 hostnames = all_proc.apply_sync(socket.gethostname)
@@ -62,7 +62,7 @@ vars1 = all_proc['var1']
 vars2 = all_proc['var2']
 vars3 = all_proc['var3']
 print(' ')
-for i in range(nclients):
+for i in range(nengines):
     istr = '{:02d}'.format(i)  # returns a 2-digit string whose value is i
     v1str = str(vars1[i])
     v2str = str(vars2[i])
