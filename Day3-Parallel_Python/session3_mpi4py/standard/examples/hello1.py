@@ -23,6 +23,6 @@ def main():
         % (node_name, my_rank, num_proc))
     # Once we're finished, we call Disconnect.  
     # No further calls to MPI can be made once MPI_Finalize is invoked.
-    #MPI.Finalize()
+    MPI.Finalize()
 main()
 

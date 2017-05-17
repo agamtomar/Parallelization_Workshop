@@ -81,5 +81,5 @@ def main():
                 % (my_rank, global_min, global_max, global_sum))
             sys.stdout.flush()
         comm.Barrier()
-    #MPI.Finalize()
+    MPI.Finalize()
 main()

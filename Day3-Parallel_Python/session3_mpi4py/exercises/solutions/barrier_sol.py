@@ -32,6 +32,6 @@ def main():
             sys.stdout.flush()
         comm.Barrier()
 
-    MPI.Finalize()
+    #MPI.Finalize()
 main()
 

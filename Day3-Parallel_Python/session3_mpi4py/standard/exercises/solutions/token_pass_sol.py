@@ -26,27 +26,27 @@ def main():
     comm.Barrier()
 
     token = my_rank
-    if (my_rank > 0):
-        my_source = my_rank-1
-        my_tag = my_rank-1
-        token = comm.recv(source=my_source, tag=my_tag)
 
     if (my_rank < (num_proc-1)):
-        my_dest = my_rank+1
+        my_source = my_rank+1
+        my_tag = my_rank+1
+        token = comm.recv(source=my_source, tag=my_tag)
+
+    if (my_rank > 0):
+        my_dest = my_rank-1
         my_tag = my_rank
         comm.send(token, dest=my_dest, tag=my_tag)
 
-
-    if(my_rank == 0):
-        my_source = num_proc-1
-        my_tag = num_proc-1
+    if (my_rank == (num_proc-1)):
+        my_source = 0
+        my_tag = 0
         token = comm.recv(source=my_source, tag=my_tag)       
         sys.stdout.write(
             "  Token pass complete!\n")
-    if (my_rank == (num_proc-1)):
-        my_dest = 0
+    if(my_rank == 0):
+        my_dest = num_proc-1
         my_tag = my_rank
         comm.send(token, dest=my_dest, tag=my_tag)
-    #MPI.Finalize()
+    MPI.Finalize()
 main()
 

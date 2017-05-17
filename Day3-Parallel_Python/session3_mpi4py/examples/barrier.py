@@ -35,6 +35,6 @@ def main():
                 "  Hello from node %s, rank %d out of %d processes.\n"
                 % (node_name, my_rank, num_proc))
             sys.stdout.flush()
-    MPI.Finalize()
+    #MPI.Finalize()
 main()
 

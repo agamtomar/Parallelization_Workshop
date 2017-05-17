@@ -1,9 +1,13 @@
 ##################################################################
 #
-#       Exercise:  Synchronization
+#       Example:  Synchronization
 #       
-#       Place an additional call to barrier into the code below so that
-#       processes print their ID's to the screen in ascending order.
+#       Different processes can execute their instructions at different speeds.
+#       This is usually due to computational load imbalance (e.g., one process
+#       has less work to do, and so it executes its code faster).
+#       We can use the Barrier method, as shown below, to force all processes
+#       to synchronize at a specified point in the code.  Processes arriving
+#       early wait on all other processes to arrive before moving on.
 def main():
 
     from mpi4py import MPI
@@ -16,8 +20,8 @@ def main():
 
     if (my_rank == 0):
         sys.stdout.write("  %d MPI Processes are now active.\n" %(num_proc))
-
-    # As with OpenMP, MPI has a barrier function useful
+        sys.stdout.flush()
+    # MPI has a barrier function useful
     # for synchronizing thread activity.  Execution of the parallel 
     # region pauses at the barrier and resumes once all threads have
     # reached the barrier.
@@ -30,7 +34,7 @@ def main():
             sys.stdout.write(
                 "  Hello from node %s, rank %d out of %d processes.\n"
                 % (node_name, my_rank, num_proc))
-
-    #MPI.Finalize()
+            sys.stdout.flush()
+    MPI.Finalize()
 main()
 

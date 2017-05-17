@@ -1,9 +1,8 @@
-##################################################################
+########################################################
 #
-#       Exercise:  Synchronization
-#       
-#       Place an additional call to barrier into the code below so that
-#       processes print their ID's to the screen in ascending order.
+#           Solution:  Barrier Exercise
+#
+#           Processes now print in ascending order by rank.
 def main():
 
     from mpi4py import MPI
@@ -16,8 +15,8 @@ def main():
 
     if (my_rank == 0):
         sys.stdout.write("  %d MPI Processes are now active.\n" %(num_proc))
-
-    # As with OpenMP, MPI has a barrier function useful
+        sys.stdout.flush()
+    # MPI has a barrier function useful
     # for synchronizing thread activity.  Execution of the parallel 
     # region pauses at the barrier and resumes once all threads have
     # reached the barrier.
@@ -30,7 +29,9 @@ def main():
             sys.stdout.write(
                 "  Hello from node %s, rank %d out of %d processes.\n"
                 % (node_name, my_rank, num_proc))
+            sys.stdout.flush()
+        comm.Barrier()
 
-    #MPI.Finalize()
+    MPI.Finalize()
 main()
 

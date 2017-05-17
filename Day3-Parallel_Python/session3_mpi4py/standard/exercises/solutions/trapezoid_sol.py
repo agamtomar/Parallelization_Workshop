@@ -1,21 +1,8 @@
 #######################################################3
 #
-#       Exercise:  Trapezoidal Integration
-#
-#       Consider the following program, designed to integrate x^3
-#       in parallel over the region [0,1].   Everything needed to
-#       make this program work is provided, with one exception.
-#       As we are distributing the work involved in computing the 
-#       integral, we need to give each process a unique subrange
-#       of [0,1] to integrate over.   Modify the definitions of deltax
-#       and myxone below so that the integration limits are appropriately
-#       defined for each process.
+#       Solution:  Trapezoidal Integration
 #
 #
-#       This sort of exercise is referred to as "load balancing."
-#
-#       Once you are finished, examine how the calculation time varies
-#       as the number of MPI ranks is changed.
 def myfunc(x):
     val = x*x*x
     return val
@@ -58,18 +45,15 @@ def main():
     ntests = 100
     ntrap = 1000000//num_proc  # Each rank gets 1000,000/num_proc trapezoids
 
-    ntests = 2  #comment this line out once your code is working correctly
+
 
 
     xone = 1.0  # The global limits of integration
     xtwo = 2.0
 
-
     # Each rank should integrate between a unique pair of values myxone and myxtwo
-    # What should deltax and myxone be to make this work?
-    # The logic below only works for one process...
-    deltax = (xtwo-xone)
-    myxone = xone
+    deltax = (xtwo-xone)/num_proc
+    myxone = xone+deltax*my_rank
     myxtwo = myxone+deltax
 
     local_integral  = numpy.ndarray(1, dtype='float64') 
@@ -96,6 +80,6 @@ def main():
     dt_avg = (dt_global/num_proc)/ntests
     if (my_rank == 0):
         sys.stdout.write('  Average integration time for %d MPI ranks is %f seconds.\n' % (num_proc, dt_avg[0]))
-    #MPI.Finalize()
+    MPI.Finalize()
 main()
 

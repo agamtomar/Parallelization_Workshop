@@ -1,13 +1,13 @@
 ###############################################################################
 #
-#       Exercise:  Message passing
+#       Example:  Message passing
 #       
-#       Modify this code so that each rank 
-#       i) receives a message from the rank above it
-#      ii) sends a message to the rank below it.
-#       Execution completes when the highest rank receives from process 0
-
-
+#       In this example, each rank 
+#       i) receives a message from the rank below it
+#      ii) sends a message to the rank above it.
+#     iii) Rank 0 sends to rank N-1, and rank N-1 receives from rank 0
+#       Execution completes when process 0 receives from the highest rank.
+#       Note the modified logic for rank 0 and the maximum rank
 def main():
     """
     Python, mpi4py parallel hello world.
@@ -47,6 +47,6 @@ def main():
         my_dest = 0
         my_tag = my_rank
         comm.send(token, dest=my_dest, tag=my_tag)
-    #MPI.Finalize()
+    MPI.Finalize()
 main()
 

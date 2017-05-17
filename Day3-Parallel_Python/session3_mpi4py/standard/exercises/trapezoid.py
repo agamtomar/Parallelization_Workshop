@@ -96,6 +96,6 @@ def main():
     dt_avg = (dt_global/num_proc)/ntests
     if (my_rank == 0):
         sys.stdout.write('  Average integration time for %d MPI ranks is %f seconds.\n' % (num_proc, dt_avg[0]))
-    #MPI.Finalize()
+    MPI.Finalize()
 main()
 

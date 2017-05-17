@@ -47,6 +47,6 @@ def main():
         my_dest = 0
         my_tag = my_rank
         comm.send(token, dest=my_dest, tag=my_tag)
-    #MPI.Finalize()
+    MPI.Finalize()
 main()
 
