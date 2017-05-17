@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --nodes=1                    		# Number of requested nodes
-#SBATCH --array=2-24:2%1                          # run even number of task on a node
+#SBATCH --array=2-24:2%1                        # run even number of task on a node
 #SBATCH --time=0:20:00               		# Max wall time
 #SBATCH --qos=normal                 		# Specify debug QOS
 #SBATCH --partition=shas             		# Specify Summit haswell nodes
