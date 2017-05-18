@@ -18,6 +18,7 @@ if (id > nprocs/2) {
     comm.print(k, all.rank=TRUE)
 } else {
     k <- -10*id
+    comm.print(k, all.rank=TRUE)
 }    
 
 # Wrap up
