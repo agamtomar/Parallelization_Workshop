@@ -8,11 +8,13 @@ approx_pi <- function(n) {
   V * sum(f_hat) / n
 }
 
+approx_pi.c <- compiler::cmpfun(approx_pi)
+
 time.start = Sys.time()
 
 npts = 1E7
 n <- rep(npts, 5)
-result <- sapply(n, approx_pi)
+result <- sapply(n, approx_pi.c)
 pi.approx = mean(result)
 
 cat('     pi estimate = ', pi.approx,'\n')
