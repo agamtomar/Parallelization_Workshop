@@ -36,10 +36,11 @@ comm.cat('running parallel version with n.pts = ',npts,' and ncores = ',ncores,'
 
 time.start = Sys.time()
 
-n <- rep(npts, ncores)
+n <- rep(npts.core, ncores)
 result = pbdSapply(n, approx.pi, pbd.mode="spmd")
+comm.print(result, all.rank=TRUE)
 result <- reduce(result)
-comm.print(result)
+comm.print(result, all.rank=TRUE)
 
 if (.comm.rank == 0) {
     pi.approx <- result/.comm.size
