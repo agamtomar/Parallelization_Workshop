@@ -8,9 +8,9 @@ init()
 # Print Hello World
 id <- comm.rank()
 nprocs <- comm.size()
-comm.cat("Hello World from process", id,"of", nprocs,"!\n", all.rank=TRUE)
+cat("Hello World from process", id,"of", nprocs,"!\n", all.rank=TRUE)
 k <- 10*nprocs
-comm.print(k, all.rank=TRUE)
+print(k, all.rank=TRUE)
 
 # Wrap up
 finalize()
