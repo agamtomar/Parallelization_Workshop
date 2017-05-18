@@ -1,23 +1,17 @@
 # Simple profiling example
-library(profvis)
-
+library(lineprof)
 f <- function() {
-  pause(0.6)
+  pause(1)
   g()
   h()
 }
 
 g <- function() {
-  pause(0.1)
+  pause(0.2)
   h()
 }
 
 h <- function() {
   pause(0.5)
 }
-
-p <- profvis({f()})
-p
-#htmlwidgets::saveWidget(p, 'simple.html', selfcontained = FALSE)
-
 
