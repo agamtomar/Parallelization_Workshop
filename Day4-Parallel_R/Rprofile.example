@@ -1,0 +1,4 @@
+sinfo <- Sys.info()
+user <- sinfo["user"]
+userpath <- paste("/projects/", user, "/R", sep="")
+.libPaths(c(userpath, .libPaths()))
