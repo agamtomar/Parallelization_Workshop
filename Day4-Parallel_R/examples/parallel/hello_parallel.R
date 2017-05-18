@@ -1,3 +1,4 @@
+# parallel hello world
 library(parallel)
 hello <- function () {
     info <- Sys.info()[c("nodename", "machine")]

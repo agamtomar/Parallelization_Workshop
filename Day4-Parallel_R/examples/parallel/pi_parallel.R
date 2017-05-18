@@ -1,10 +1,7 @@
 # Description: Calculate pi using Monte Carlo (parallel)
 # Run: Rscript pi_parallel.r
 
-## for random generator in parallel
-
 library(parallel)
-
 
 approx.pi <- function(n) {
   # approximates pi via MC integration of unit disk
