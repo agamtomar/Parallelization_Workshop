@@ -1,10 +1,7 @@
 # Description: Calculate pi using Monte Carlo (parallel)
 # Run: Rscript pi_parallel.r
 
-## for random generator in parallel
-
 library(parallel)
-library(rlecuyer)
 
 approx.pi <- function(n) {
   # approximates pi via MC integration of unit disk
@@ -24,7 +21,7 @@ npts <- 1E7
 #cluster size 
 ncores <- 10
 
-npts.core <- npts  # points per core
+npts.core <- npts/ncores  # points per core
 
 cat('running parallel version with n.pts = ',npts,' and ncores = ',ncores,' (',npts.core,' pts per core) \n')
 

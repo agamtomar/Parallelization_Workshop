@@ -25,8 +25,10 @@ count.in.cir <- function(n.pts) {
 
 # Call count.in.cir on each process
 n.in.cir <- count.in.cir(n.pts)
+comm.print(n.in.cir, all.rank=TRUE)
 # Use reduce() to total across processes
 n.in.cir <- reduce(n.in.cir, op="sum")
+comm.print(n.in.cir, all.rank=TRUE)
 
 # Approximate pi
 pi.approx <- 4*n.in.cir/( comm.size()*n.pts )
